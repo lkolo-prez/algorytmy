@@ -1,0 +1,299 @@
+{
+  "Algorithm Template": {
+    "prefix": "alg",
+    "body": [
+      "algorithm ${1:NazwaAlgorytmu}(${2:parametry}) {",
+      "\t${3:// kod}",
+      "}"
+    ],
+    "description": "Szablon algorytmu z nawiasami klamrowymi"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if ${1:warunek} then {",
+      "\t${2:// instrukcje}",
+      "}"
+    ],
+    "description": "Instrukcja warunkowa if"
+  },
+  "If-Else Statement": {
+    "prefix": "ife",
+    "body": [
+      "if ${1:warunek} then {",
+      "\t${2:// instrukcje-1}",
+      "} else {",
+      "\t${3:// instrukcje-2}",
+      "}"
+    ],
+    "description": "Instrukcja warunkowa if-else"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1:i} ← ${2:1} to ${3:n} do {",
+      "\t${4:// instrukcje}",
+      "}"
+    ],
+    "description": "Pętla for"
+  },
+  "For Loop with Step": {
+    "prefix": "fors",
+    "body": [
+      "for ${1:i} ← ${2:start} to ${3:end} step ${4:krok} do {",
+      "\t${5:// instrukcje}",
+      "}"
+    ],
+    "description": "Pętla for z krokiem"
+  },
+  "While Loop": {
+    "prefix": "while",
+    "body": [
+      "while ${1:warunek} do {",
+      "\t${2:// instrukcje}",
+      "}"
+    ],
+    "description": "Pętla while"
+  },
+  "Assignment": {
+    "prefix": "let",
+    "body": [
+      "${1:zmienna} ← ${2:wartość}"
+    ],
+    "description": "Przypisanie zmiennej (← arrow)"
+  },
+  "Read Input": {
+    "prefix": "read",
+    "body": [
+      "read(${1:zmienna})"
+    ],
+    "description": "Wczytanie danych"
+  },
+  "Write Output": {
+    "prefix": "write",
+    "body": [
+      "write(${1:wartość})"
+    ],
+    "description": "Wypisanie danych"
+  },
+  "Array Access": {
+    "prefix": "arr",
+    "body": [
+      "${1:A}[${2:i}]"
+    ],
+    "description": "Dostęp do tablicy"
+  },
+  "Array 2D Access": {
+    "prefix": "arr2d",
+    "body": [
+      "${1:A}[${2:i}, ${3:j}]"
+    ],
+    "description": "Dostęp do tablicy 2D"
+  },
+  "Read Array": {
+    "prefix": "readarr",
+    "body": [
+      "read(${1:n})",
+      "for ${2:i} ← 1 to ${1:n} do {",
+      "\tread(${3:A}[${2:i}])",
+      "}"
+    ],
+    "description": "Wczytanie tablicy"
+  },
+  "Sum Array": {
+    "prefix": "sumarr",
+    "body": [
+      "${1:suma} ← 0",
+      "for ${2:i} ← 1 to ${3:n} do {",
+      "\t${1:suma} ← ${1:suma} + ${4:A}[${2:i}]",
+      "}"
+    ],
+    "description": "Suma elementów tablicy"
+  },
+  "Find Min": {
+    "prefix": "findmin",
+    "body": [
+      "${1:min} ← ${2:A}[1]",
+      "for ${3:i} ← 2 to ${4:n} do {",
+      "\tif ${2:A}[${3:i}] < ${1:min} then {",
+      "\t\t${1:min} ← ${2:A}[${3:i}]",
+      "\t}",
+      "}"
+    ],
+    "description": "Znalezienie minimum"
+  },
+  "Find Max": {
+    "prefix": "findmax",
+    "body": [
+      "${1:max} ← ${2:A}[1]",
+      "for ${3:i} ← 2 to ${4:n} do {",
+      "\tif ${2:A}[${3:i}] > ${1:max} then {",
+      "\t\t${1:max} ← ${2:A}[${3:i}]",
+      "\t}",
+      "}"
+    ],
+    "description": "Znalezienie maksimum"
+  },
+  "Swap": {
+    "prefix": "swap",
+    "body": [
+      "${1:temp} ← ${2:a}",
+      "${2:a} ← ${3:b}",
+      "${3:b} ← ${1:temp}"
+    ],
+    "description": "Zamiana wartości zmiennych"
+  },
+  "Comment Block": {
+    "prefix": "//",
+    "body": [
+      "// ${1:Komentarz}"
+    ],
+    "description": "Komentarz jednoliniowy"
+  },
+  "Binary Search": {
+    "prefix": "binsearch",
+    "body": [
+      "${1:left} ← 1",
+      "${2:right} ← ${3:n}",
+      "while ${1:left} ≤ ${2:right} do {",
+      "\t${4:mid} ← (${1:left} + ${2:right}) / 2",
+      "\tif ${5:A}[${4:mid}] = ${6:szukana} then {",
+      "\t\treturn ${4:mid}",
+      "\t} else if ${5:A}[${4:mid}] < ${6:szukana} then {",
+      "\t\t${1:left} ← ${4:mid} + 1",
+      "\t} else {",
+      "\t\t${2:right} ← ${4:mid} - 1",
+      "\t}",
+      "}",
+      "return -1"
+    ],
+    "description": "Wyszukiwanie binarne"
+  },
+  "Bubble Sort": {
+    "prefix": "bubblesort",
+    "body": [
+      "for ${1:i} ← 1 to ${2:n}-1 do {",
+      "\tfor ${3:j} ← 1 to ${2:n}-${1:i} do {",
+      "\t\tif ${4:A}[${3:j}] > ${4:A}[${3:j}+1] then {",
+      "\t\t\t${5:temp} ← ${4:A}[${3:j}]",
+      "\t\t\t${4:A}[${3:j}] ← ${4:A}[${3:j}+1]",
+      "\t\t\t${4:A}[${3:j}+1] ← ${5:temp}",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Sortowanie bąbelkowe"
+  },
+  "Selection Sort": {
+    "prefix": "selectsort",
+    "body": [
+      "for ${1:i} ← 1 to ${2:n}-1 do {",
+      "\t${3:minIdx} ← ${1:i}",
+      "\tfor ${4:j} ← ${1:i}+1 to ${2:n} do {",
+      "\t\tif ${5:A}[${4:j}] < ${5:A}[${3:minIdx}] then {",
+      "\t\t\t${3:minIdx} ← ${4:j}",
+      "\t\t}",
+      "\t}",
+      "\t${6:temp} ← ${5:A}[${1:i}]",
+      "\t${5:A}[${1:i}] ← ${5:A}[${3:minIdx}]",
+      "\t${5:A}[${3:minIdx}] ← ${6:temp}",
+      "}"
+    ],
+    "description": "Sortowanie przez wybór"
+  },
+  "Factorial Recursive": {
+    "prefix": "factorial",
+    "body": [
+      "algorithm Silnia(${1:n}) {",
+      "\tif ${1:n} = 0 then {",
+      "\t\treturn 1",
+      "\t}",
+      "\treturn ${1:n} * Silnia(${1:n} - 1)",
+      "}"
+    ],
+    "description": "Silnia rekurencyjnie"
+  },
+  "Fibonacci Recursive": {
+    "prefix": "fibonacci",
+    "body": [
+      "algorithm Fibonacci(${1:n}) {",
+      "\tif ${1:n} ≤ 1 then {",
+      "\t\treturn ${1:n}",
+      "\t}",
+      "\treturn Fibonacci(${1:n}-1) + Fibonacci(${1:n}-2)",
+      "}"
+    ],
+    "description": "Ciąg Fibonacciego rekurencyjnie"
+  },
+  "Power Iterative": {
+    "prefix": "poweriter",
+    "body": [
+      "${1:wynik} ← 1",
+      "for ${2:i} ← 1 to ${3:n} do {",
+      "\t${1:wynik} ← ${1:wynik} * ${4:a}",
+      "}"
+    ],
+    "description": "Potęgowanie iteracyjne"
+  },
+  "Power Recursive": {
+    "prefix": "powerrec",
+    "body": [
+      "algorithm Potega(${1:a}, ${2:n}) {",
+      "\tif ${2:n} = 0 then {",
+      "\t\treturn 1",
+      "\t}",
+      "\treturn ${1:a} * Potega(${1:a}, ${2:n} - 1)",
+      "}"
+    ],
+    "description": "Potęgowanie rekurencyjne"
+  },
+  "GCD Euclidean": {
+    "prefix": "gcd",
+    "body": [
+      "algorithm NWD(${1:a}, ${2:b}) {",
+      "\twhile ${2:b} ≠ 0 do {",
+      "\t\t${3:temp} ← ${2:b}",
+      "\t\t${2:b} ← ${1:a} mod ${2:b}",
+      "\t\t${1:a} ← ${3:temp}",
+      "\t}",
+      "\treturn ${1:a}",
+      "}"
+    ],
+    "description": "NWD algorytmem Euklidesa"
+  },
+  "Linear Search": {
+    "prefix": "linsearch",
+    "body": [
+      "for ${1:i} ← 1 to ${2:n} do {",
+      "\tif ${3:A}[${1:i}] = ${4:szukana} then {",
+      "\t\treturn ${1:i}",
+      "\t}",
+      "}",
+      "return -1"
+    ],
+    "description": "Wyszukiwanie liniowe"
+  },
+  "Count Elements": {
+    "prefix": "countelem",
+    "body": [
+      "${1:licznik} ← 0",
+      "for ${2:i} ← 1 to ${3:n} do {",
+      "\tif ${4:warunek} then {",
+      "\t\t${1:licznik} ← ${1:licznik} + 1",
+      "\t}",
+      "}"
+    ],
+    "description": "Liczenie elementów spełniających warunek"
+  },
+  "Reverse Array": {
+    "prefix": "reverse",
+    "body": [
+      "for ${1:i} ← 1 to ${2:n}/2 do {",
+      "\t${3:temp} ← ${4:A}[${1:i}]",
+      "\t${4:A}[${1:i}] ← ${4:A}[${2:n} - ${1:i} + 1]",
+      "\t${4:A}[${2:n} - ${1:i} + 1] ← ${3:temp}",
+      "}"
+    ],
+    "description": "Odwracanie tablicy"
+  }
+}

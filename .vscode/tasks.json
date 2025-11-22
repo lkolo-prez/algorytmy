@@ -1,0 +1,126 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Waliduj bieżący plik",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/validator.py",
+        "${file}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Waliduj wszystkie pliki",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/validator.py",
+        "--all"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Waliduj listę 1",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/validator.py",
+        "${workspaceFolder}/lista_1/*/zadanie.md"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Waliduj listę 2",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/validator.py",
+        "${workspaceFolder}/lista_2/*/zadanie.md"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Waliduj listę 3",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/validator.py",
+        "${workspaceFolder}/lista_3/*/zadanie.md"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Uruchom algorytm (interpreter)",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/interpreter.py",
+        "${file}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Uruchom algorytm (debug mode)",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/interpreter.py",
+        "${file}",
+        "--debug"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Waliduj workspace/",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/validator.py",
+        "${workspaceFolder}/workspace/**/*.md"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

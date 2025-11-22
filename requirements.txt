@@ -1,0 +1,15 @@
+# Zależności dla projektu Algorytmy - Narzędzia Edukacyjne
+
+# Podstawowe narzędzia (interpreter i test_runner używają tylko Python stdlib)
+# Brak wymaganych zależności do podstawowego działania
+
+# Narzędzia deweloperskie dla CI/CD:
+flake8>=6.0.0      # Linting kodu Python
+black>=23.0.0      # Automatyczne formatowanie kodu
+
+# Aby zainstalować narzędzia deweloperskie:
+# pip install -r requirements.txt
+
+# Podstawowe użycie (bez instalacji):
+# python interpreter.py examples/suma.md
+# python test_runner.py tests/test_suma.json examples/suma.md

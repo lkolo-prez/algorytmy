@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudokod - Ściągawka</title>
+    <style>
+        @media print {
+            body { margin: 0.5cm; font-size: 9pt; }
+            .no-print { display: none; }
+            h1 { font-size: 16pt; }
+            h2 { font-size: 13pt; page-break-after: avoid; }
+            h3 { font-size: 11pt; page-break-after: avoid; }
+            table { page-break-inside: avoid; }
+            .section { page-break-inside: avoid; }
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            color: #1a1a1a;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2196F3;
+        }
+        
+        h1 {
+            color: #2196F3;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        h2 {
+            color: #1565C0;
+            font-size: 1.8em;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #90CAF9;
+        }
+        
+        h3 {
+            color: #1976D2;
+            font-size: 1.3em;
+            margin: 20px 0 10px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .section {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        code {
+            background: #263238;
+            color: #80CBC4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+        
+        pre {
+            background: #263238;
+            color: #B0BEC5;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        
+        .keyword { color: #C792EA; font-weight: bold; }
+        .operator { color: #89DDFF; }
+        .function { color: #82AAFF; }
+        .comment { color: #546E7A; font-style: italic; }
+        .string { color: #C3E88D; }
+        .number { color: #F78C6C; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background: #2196F3;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+        
+        .operator-symbol {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1976D2;
+        }
+        
+        .note {
+            background: #FFF9C4;
+            border-left: 4px solid #FBC02D;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .note strong {
+            color: #F57C00;
+        }
+        
+        .tip {
+            background: #E1F5FE;
+            border-left: 4px solid #0288D1;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .tip strong {
+            color: #01579B;
+        }
+        
+        ul {
+            margin: 10px 0 10px 25px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .print-btn:hover {
+            background: #1976D2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .snippet-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .snippet-tag {
+            background: #E3F2FD;
+            color: #1565C0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">🖨️ Drukuj</button>
+    
+    <div class="container">
+        <header>
+            <h1>📘 Pseudokod - Ściągawka</h1>
+            <p class="subtitle">Składnia Mariusza Sobola | Indeksowanie od 1</p>
+        </header>
+
+        <section>
+            <h2>🔤 Struktura Algorytmu</h2>
+            <div class="section">
+                <pre><code><span class="keyword">algorithm</span> <span class="function">NazwaAlgorytmu</span>(parametry) {
+    <span class="comment">// Deklaracje zmiennych</span>
+    zmienna <span class="operator">←</span> wartość
+    
+    <span class="comment">// Główna logika</span>
+    <span class="keyword">if</span> warunek <span class="keyword">then</span> {
+        instrukcje
+    }
+    
+    <span class="comment">// Zwrot wartości</span>
+    <span class="keyword">return</span> wynik
+}</code></pre>
+            </div>
+            
+            <div class="note">
+                <strong>⚠️ Ważne:</strong> Używamy nawiasów klamrowych <code>{ }</code> zamiast <code>end if</code>, <code>end for</code>, itd.
+            </div>
+        </section>
+
+        <section>
+            <h2>➡️ Operatory Przypisania</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Znaczenie</th>
+                        <th>Przykład</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="operator-symbol">←</td>
+                        <td>Przypisanie</td>
+                        <td><code>x ← 10</code></td>
+                    </tr>
+                    <tr>
+                        <td class="operator-symbol">=</td>
+                        <td>Porównanie (NIE przypisanie!)</td>
+                        <td><code>if x = 10 then {...}</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="note">
+                <strong>⚠️ Uwaga:</strong> Znak <code>=</code> służy TYLKO do porównań w warunkach, nie do przypisania!
+            </div>
+        </section>
+
+        <section>
+            <h2>🔢 Operatory Porównania</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Znaczenie</th>
+                        <th>Przykład</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="operator-symbol">=</td>
+                        <td>Równe</td>
+                        <td><code>if a = b then {...}</code></td>
+                    </tr>
+                    <tr>
+                        <td class="operator-symbol">≠</td>
+                        <td>Różne</td>
+                        <td><code>if a ≠ b then {...}</code></td>
+                    </tr>
+                    <tr>
+                        <td class="operator-symbol"><</td>
+                        <td>Mniejsze</td>
+                        <td><code>if a < b then {...}</code></td>
+                    </tr>
+                    <tr>
+                        <td class="operator-symbol">></td>
+                        <td>Większe</td>
+                        <td><code>if a > b then {...}</code></td>
+                    </tr>
+                    <tr>
+                        <td class="operator-symbol">≤</td>
+                        <td>Mniejsze lub równe</td>
+                        <td><code>if a ≤ b then {...}</code></td>
+                    </tr>
+                    <tr>
+                        <td class="operator-symbol">≥</td>
+                        <td>Większe lub równe</td>
+                        <td><code>if a ≥ b then {...}</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>🔀 Instrukcje Warunkowe</h2>
+            <div class="grid">
+                <div class="section">
+                    <h3>If (podstawowy)</h3>
+                    <pre><code><span class="keyword">if</span> warunek <span class="keyword">then</span> {
+    instrukcje
+}</code></pre>
+                </div>
+                
+                <div class="section">
+                    <h3>If-Else</h3>
+                    <pre><code><span class="keyword">if</span> warunek <span class="keyword">then</span> {
+    instrukcje-1
+} <span class="keyword">else</span> {
+    instrukcje-2
+}</code></pre>
+                </div>
+                
+                <div class="section">
+                    <h3>If-Else If-Else</h3>
+                    <pre><code><span class="keyword">if</span> warunek1 <span class="keyword">then</span> {
+    instrukcje-1
+} <span class="keyword">else if</span> warunek2 <span class="keyword">then</span> {
+    instrukcje-2
+} <span class="keyword">else</span> {
+    instrukcje-3
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🔁 Pętle</h2>
+            <div class="grid">
+                <div class="section">
+                    <h3>For (podstawowy)</h3>
+                    <pre><code><span class="keyword">for</span> i <span class="operator">←</span> <span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span> {
+    instrukcje
+}</code></pre>
+                </div>
+                
+                <div class="section">
+                    <h3>For z krokiem</h3>
+                    <pre><code><span class="keyword">for</span> i <span class="operator">←</span> <span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">step</span> <span class="number">2</span> <span class="keyword">do</span> {
+    instrukcje
+}</code></pre>
+                </div>
+                
+                <div class="section">
+                    <h3>While</h3>
+                    <pre><code><span class="keyword">while</span> warunek <span class="keyword">do</span> {
+    instrukcje
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="tip">
+                <strong>💡 Wskazówka:</strong> Indeksowanie tablic zaczyna się od 1, nie od 0!
+            </div>
+        </section>
+
+        <section>
+            <h2>📥📤 Wejście/Wyjście</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Funkcja</th>
+                        <th>Opis</th>
+                        <th>Przykład</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>read(zmienna)</code></td>
+                        <td>Wczytanie wartości</td>
+                        <td><code>read(n)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>write(wartość)</code></td>
+                        <td>Wypisanie wartości</td>
+                        <td><code>write("Wynik = ", suma)</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>📊 Tablice</h2>
+            <div class="grid">
+                <div class="section">
+                    <h3>Jednowymiarowa</h3>
+                    <pre><code><span class="comment">// Dostęp</span>
+element <span class="operator">←</span> A[i]
+
+<span class="comment">// Wczytanie</span>
+<span class="function">read</span>(n)
+<span class="keyword">for</span> i <span class="operator">←</span> <span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span> {
+    <span class="function">read</span>(A[i])
+}</code></pre>
+                </div>
+                
+                <div class="section">
+                    <h3>Dwuwymiarowa</h3>
+                    <pre><code><span class="comment">// Dostęp</span>
+element <span class="operator">←</span> A[i, j]
+
+<span class="comment">// Wczytanie</span>
+<span class="function">read</span>(n, m)
+<span class="keyword">for</span> i <span class="operator">←</span> <span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span> {
+    <span class="keyword">for</span> j <span class="operator">←</span> <span class="number">1</span> <span class="keyword">to</span> m <span class="keyword">do</span> {
+        <span class="function">read</span>(A[i, j])
+    }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>⚡ Snippety VS Code</h2>
+            <p>Dostępne skróty (wpisz prefix i naciśnij Tab):</p>
+            
+            <h3>Podstawowe</h3>
+            <div class="snippet-list">
+                <span class="snippet-tag">alg</span>
+                <span class="snippet-tag">if</span>
+                <span class="snippet-tag">ife</span>
+                <span class="snippet-tag">for</span>
+                <span class="snippet-tag">fors</span>
+                <span class="snippet-tag">while</span>
+                <span class="snippet-tag">let</span>
+                <span class="snippet-tag">read</span>
+                <span class="snippet-tag">write</span>
+            </div>
+            
+            <h3>Tablice</h3>
+            <div class="snippet-list">
+                <span class="snippet-tag">arr</span>
+                <span class="snippet-tag">arr2d</span>
+                <span class="snippet-tag">readarr</span>
+                <span class="snippet-tag">sumarr</span>
+                <span class="snippet-tag">findmin</span>
+                <span class="snippet-tag">findmax</span>
+                <span class="snippet-tag">reverse</span>
+            </div>
+            
+            <h3>Algorytmy</h3>
+            <div class="snippet-list">
+                <span class="snippet-tag">linsearch</span>
+                <span class="snippet-tag">binsearch</span>
+                <span class="snippet-tag">bubblesort</span>
+                <span class="snippet-tag">selectsort</span>
+                <span class="snippet-tag">swap</span>
+                <span class="snippet-tag">countelem</span>
+            </div>
+            
+            <h3>Rekurencja</h3>
+            <div class="snippet-list">
+                <span class="snippet-tag">factorial</span>
+                <span class="snippet-tag">fibonacci</span>
+                <span class="snippet-tag">poweriter</span>
+                <span class="snippet-tag">powerrec</span>
+                <span class="snippet-tag">gcd</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>📝 Przykładowe Algorytmy</h2>
+            
+            <div class="section">
+                <h3>Suma Elementów Tablicy</h3>
+                <pre><code><span class="keyword">algorithm</span> <span class="function">SumaElementow</span>(A, n) {
+    suma <span class="operator">←</span> <span class="number">0</span>
+    <span class="keyword">for</span> i <span class="operator">←</span> <span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span> {
+        suma <span class="operator">←</span> suma + A[i]
+    }
+    <span class="keyword">return</span> suma
+}</code></pre>
+            </div>
+            
+            <div class="section">
+                <h3>Wyszukiwanie Minimum</h3>
+                <pre><code><span class="keyword">algorithm</span> <span class="function">Minimum</span>(A, n) {
+    min <span class="operator">←</span> A[<span class="number">1</span>]
+    <span class="keyword">for</span> i <span class="operator">←</span> <span class="number">2</span> <span class="keyword">to</span> n <span class="keyword">do</span> {
+        <span class="keyword">if</span> A[i] < min <span class="keyword">then</span> {
+            min <span class="operator">←</span> A[i]
+        }
+    }
+    <span class="keyword">return</span> min
+}</code></pre>
+            </div>
+            
+            <div class="section">
+                <h3>Wyszukiwanie Binarne</h3>
+                <pre><code><span class="keyword">algorithm</span> <span class="function">WyszukiwanieBinarne</span>(A, n, x) {
+    left <span class="operator">←</span> <span class="number">1</span>
+    right <span class="operator">←</span> n
+    <span class="keyword">while</span> left <span class="operator">≤</span> right <span class="keyword">do</span> {
+        mid <span class="operator">←</span> (left + right) / <span class="number">2</span>
+        <span class="keyword">if</span> A[mid] = x <span class="keyword">then</span> {
+            <span class="keyword">return</span> mid
+        } <span class="keyword">else if</span> A[mid] < x <span class="keyword">then</span> {
+            left <span class="operator">←</span> mid + <span class="number">1</span>
+        } <span class="keyword">else</span> {
+            right <span class="operator">←</span> mid - <span class="number">1</span>
+        }
+    }
+    <span class="keyword">return</span> <span class="number">-1</span>
+}</code></pre>
+            </div>
+            
+            <div class="section">
+                <h3>Sortowanie Bąbelkowe</h3>
+                <pre><code><span class="keyword">algorithm</span> <span class="function">BubbleSort</span>(A, n) {
+    <span class="keyword">for</span> i <span class="operator">←</span> <span class="number">1</span> <span class="keyword">to</span> n-<span class="number">1</span> <span class="keyword">do</span> {
+        <span class="keyword">for</span> j <span class="operator">←</span> <span class="number">1</span> <span class="keyword">to</span> n-i <span class="keyword">do</span> {
+            <span class="keyword">if</span> A[j] > A[j+<span class="number">1</span>] <span class="keyword">then</span> {
+                temp <span class="operator">←</span> A[j]
+                A[j] <span class="operator">←</span> A[j+<span class="number">1</span>]
+                A[j+<span class="number">1</span>] <span class="operator">←</span> temp
+            }
+        }
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>⌨️ Skróty Klawiszowe</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Skrót</th>
+                        <th>Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>Ctrl+Shift+V</code></td>
+                        <td>Waliduj bieżący plik</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Alt+V</code></td>
+                        <td>Waliduj wszystkie pliki</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Alt+1</code></td>
+                        <td>Waliduj listę 1</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Alt+2</code></td>
+                        <td>Waliduj listę 2</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Alt+3</code></td>
+                        <td>Waliduj listę 3</td>
+                    </tr>
+                    <tr>
+                        <td><code>Tab</code></td>
+                        <td>Rozwiń snippet (po wpisaniu prefixa)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>✅ Zasady Walidacji</h2>
+            <ul>
+                <li>✅ Używaj <code>←</code> do przypisania, nie <code>=</code></li>
+                <li>✅ Każdy blok wymaga nawiasów klamrowych <code>{ }</code></li>
+                <li>✅ Nie używaj <code>end if</code>, <code>end for</code>, <code>end while</code></li>
+                <li>✅ Indeksowanie tablic od 1</li>
+                <li>✅ Używaj <code>then</code> w instrukcji <code>if</code></li>
+                <li>✅ Używaj <code>do</code> w pętlach <code>for</code> i <code>while</code></li>
+                <li>✅ Zawsze zamykaj nawiasy klamrowe</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🚀 Szybki Start</h2>
+            <div class="tip">
+                <strong>1. Tworzenie nowego zadania:</strong><br>
+                Uruchom: <code>python new_task.py</code>
+            </div>
+            
+            <div class="tip">
+                <strong>2. Pisanie algorytmu:</strong><br>
+                Wpisz <code>alg</code> i naciśnij Tab, aby utworzyć szablon
+            </div>
+            
+            <div class="tip">
+                <strong>3. Walidacja:</strong><br>
+                Naciśnij <code>Ctrl+Shift+V</code> aby sprawdzić składnię
+            </div>
+            
+            <div class="tip">
+                <strong>4. Pomoce PowerShell:</strong><br>
+                Załaduj skrypty: <code>. .\scripts.ps1</code><br>
+                Dostępne komendy: <code>Validate-All</code>, <code>Validate-List -ListNumber 1</code>, <code>New-Task</code>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd; color: #666;">
+            <p><strong>Pseudokod - Ściągawka</strong> | Składnia Mariusza Sobola</p>
+            <p style="font-size: 0.9em;">📚 Więcej informacji: README.md | 🔧 Konfiguracja: .vscode/</p>
+        </footer>
+    </div>
+</body>
+</html>

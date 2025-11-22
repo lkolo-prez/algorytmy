@@ -1,0 +1,28 @@
+[
+  {
+    "key": "ctrl+shift+v",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Waliduj bieżący plik",
+    "when": "editorTextFocus && resourceFilename =~ /zadanie\\.md$/"
+  },
+  {
+    "key": "ctrl+alt+v",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Waliduj wszystkie pliki"
+  },
+  {
+    "key": "ctrl+alt+1",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Waliduj listę 1"
+  },
+  {
+    "key": "ctrl+alt+2",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Waliduj listę 2"
+  },
+  {
+    "key": "ctrl+alt+3",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Waliduj listę 3"
+  }
+]
