@@ -1,3 +1,0 @@
-algorithm NazwaAlgorytmu(parametry) {
-  // kod
-}
