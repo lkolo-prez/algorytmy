@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../pseudokod-extension"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"**/lista_*/*/zadanie.md": "markdown",
+			"**/lista_*/*/opis.md": "markdown"
+		}
+	}
+}
